@@ -1,0 +1,60 @@
+{% extends "employees/base.html" %}
+{% block title %}Employee List{% endblock %}
+{% block content %}
+<h1>Employee Management System</h1>
+<p class="muted">Create, search, edit, and delete employee records.</p>
+
+<a href="{% url 'employee_create' %}">+ Add Employee</a>
+
+<form method="get" class="toolbar">
+    <div class="form-row">
+        <label for="q">Search</label><br>
+        <input id="q" type="text" name="q" value="{{ query }}" placeholder="Name, email, or phone">
+    </div>
+    <div class="form-row">
+        <label for="department">Department</label><br>
+        <select id="department" name="department">
+            <option value="">All departments</option>
+            {% for department in departments %}
+                <option value="{{ department.id }}" {% if selected_department == department.id|stringformat:"s" %}selected{% endif %}>{{ department.dept_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="button" type="submit">Search / Filter</button>
+    <a class="secondary" href="{% url 'employee_list' %}">Clear</a>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Salary</th>
+            <th>Joining Date</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.joining_date|date:"Y-m-d" }}</td>
+            <td>{{ employee.department.dept_name }}</td>
+            <td class="actions">
+                <a href="{% url 'employee_update' employee.id %}">Edit</a>
+                <a class="danger" href="{% url 'employee_delete' employee.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No employees found. Add an employee or change your search.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

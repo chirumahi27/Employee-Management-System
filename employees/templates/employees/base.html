@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Employee Management{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 32px auto; max-width: 1150px; padding: 0 18px; color: #20252b; background: #fafbfc; }
+        h1 { margin: 0 0 18px; }
+        a, .button { display: inline-block; padding: 9px 13px; background: #1769aa; color: white; text-decoration: none; border-radius: 5px; border: 0; cursor: pointer; font-size: 14px; }
+        a.secondary, .button.secondary { background: #5b6570; }
+        a.danger, .button.danger { background: #b42318; }
+        table { border-collapse: collapse; width: 100%; margin-top: 18px; background: white; }
+        th, td { border: 1px solid #d9dee5; padding: 10px; text-align: left; vertical-align: top; }
+        th { background: #eef2f6; }
+        .actions { white-space: nowrap; }
+        .actions a { margin: 2px; }
+        .message { padding: 12px; background: #e6f5e9; border: 1px solid #b9e2c1; margin: 14px 0; border-radius: 5px; }
+        .form-row { margin: 14px 0; }
+        label { font-weight: bold; display: inline-block; margin-bottom: 5px; }
+        input, select { padding: 9px; border: 1px solid #b8c1cc; border-radius: 4px; min-width: 230px; max-width: 100%; }
+        .errorlist { color: #b00020; margin: 5px 0; }
+        .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin: 15px 0; }
+        .toolbar .form-row { margin: 0; }
+        .muted { color: #606b76; }
+        @media (max-width: 720px) { table { font-size: 13px; } th, td { padding: 6px; } .actions a { margin-bottom: 4px; } }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

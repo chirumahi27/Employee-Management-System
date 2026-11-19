@@ -1,0 +1,20 @@
+{% extends "employees/base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block content %}
+<h1>{{ page_title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+        <div class="form-row">
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {{ field.errors }}
+            {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+        </div>
+    {% endfor %}
+    <button class="button" type="submit">{{ submit_label }}</button>
+    <a class="secondary" href="{% url 'employee_list' %}">Cancel</a>
+</form>
+{% endblock %}
