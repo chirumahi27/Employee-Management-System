@@ -35,3 +35,11 @@ A web-based Employee Management System developed using Python and Django. This p
 
    ```bash
    git clone https://github.com/chirumahi27/Employee-Management-System.git
+
+   ## Screenshots
+
+### Employee Management Dashboard
+![Employee Dashboard](employee.png)
+
+### Employee Details
+![Employee Details](employee_details.png)
